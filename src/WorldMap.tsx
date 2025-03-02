@@ -1,29 +1,24 @@
-const tile_characters: { [_: string]: string } = {
-  dead: ".",
-  plain: "-",
-  forest: "f",
-  mountain: "^",
-}
+import { JSX } from 'react';
+import WorldTile from './WorldTile.tsx';
 
 // TODO! types for DTOs
 export default function WorldMap({ map }: {map: any[]}) {
-  let arr: string[][] = [];
+  let arr: JSX.Element[][] = [];
+  let i = 0;
   for (const entry of map) {
     if (arr[entry.y] === undefined) {
       arr[entry.y] = [];
     }
-    arr[entry.y][entry.x] = tile_characters[entry.tile];
+    arr[entry.y][entry.x] = (<WorldTile tile={entry.tile} key={i} />);
+    i++;
   }
 
-  let render = "";
-  for (const line of arr) {
-    for (const c of line) {
-      render += c;
-    }
-    render += "\n";
+  for (let line of arr) {
+    line.push((<br key={i} />));
+    i++;
   }
 
   return (
-    <pre>{render}</pre>
+    <div>{arr}</div>
   );
 }
