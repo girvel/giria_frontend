@@ -5,14 +5,14 @@ const tile_characters: { [_: string]: string } = {
   mountain: "^",
 }
 
+// TODO! types for DTOs
 export default function WorldMap({ map }: {map: any[]}) {
   let arr: string[][] = [];
   for (const entry of map) {
-    let [x, y, tile] = entry;  // TODO! that's bullshit
-    if (arr[y] === undefined) {
-      arr[y] = [];
+    if (arr[entry.y] === undefined) {
+      arr[entry.y] = [];
     }
-    arr[y][x] = tile_characters[tile];
+    arr[entry.y][entry.x] = tile_characters[entry.tile];
   }
 
   let render = "";
