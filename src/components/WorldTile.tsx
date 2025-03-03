@@ -1,4 +1,4 @@
-import { TileType } from '../api';
+import { WorldTileData } from '../api';
 import './WorldTile.css';
 
 const tile_characters: { [_: string]: string } = {
@@ -8,10 +8,23 @@ const tile_characters: { [_: string]: string } = {
   mountain: "^",
 };
 
-export default function WorldTile({ tile }: { tile: TileType }) {
+export default function WorldTile(
+  { data, selected, setSelected }: { 
+    data: WorldTileData, selected: WorldTileData | null, setSelected: any
+  }
+) {
+  const handleClick = () => {
+    setSelected(data);
+  };
+
+  var classes = `world_tile world_tile__${data.tile}`;
+  if (selected == data) {
+    classes += " world_tile__selected";
+  }
+
   return (
-    <span className={`world_tile world_tile__${tile}`}>
-        {tile_characters[tile]}
+    <span className={classes} onClick={handleClick}>
+        {tile_characters[data.tile]}
     </span>
   );
 }

@@ -8,6 +8,8 @@
 .world_tile {
   display: inline;
   /*padding: 0 5px;*/
+  color: var(--tile-fg);
+  background-color: var(--tile-bg);
 }
 
 .world_tile:hover {
@@ -15,22 +17,32 @@
   cursor: pointer;
 }
 
+.world_tile:active {
+  color: var(--tile-bg) !important;
+  background-color: var(--tile-fg) !important;
+}
+
+.world_tile__selected {
+  outline: 2px solid var(--tile-fg);
+  outline-offset: -1px;
+}
+
 .world_tile__dead {
-  color: #993311;
-  background-color: #33221d;
+  --tile-fg: #993311;
+  --tile-bg: #33221d;
 }
 
 .world_tile__forest {
-  color: #118822;
-  background-color: #0d4411;
+  --tile-fg: #118822;
+  --tile-bg: #0d4411;
 }
 
 .world_tile__plain {
-  color: #00bb00;
-  background-color: #105515;
+  --tile-fg: #00bb00;
+  --tile-bg: #105515;
 }
 
 .world_tile__mountain {
-  color: #bdbdcc;
-  background-color: #777777;
+  --tile-fg: #bdbdcc;
+  --tile-bg: #777777;
 }

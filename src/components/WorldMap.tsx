@@ -3,7 +3,9 @@ import WorldTile from './WorldTile.tsx';
 import './WorldMap.css';
 import { WorldTileData } from '../api.tsx';
 
-export default function WorldMap({ map }: {map: WorldTileData[][] | null}) {
+export default function WorldMap(
+  { map, selected, setSelected }: {map: WorldTileData[][] | null, selected: WorldTileData | null, setSelected: any}
+) {
   if (map === null) {
     return (
       <span>Loading...</span>
@@ -15,7 +17,7 @@ export default function WorldMap({ map }: {map: WorldTileData[][] | null}) {
   for (const line of map) {
     for (const data of line) {
       arr.push((
-        <WorldTile tile={data.tile} key={i} />
+        <WorldTile data={data} selected={selected} setSelected={setSelected} key={i} />
       ))
       i++;
     }
