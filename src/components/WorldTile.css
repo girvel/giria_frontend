@@ -6,8 +6,7 @@
 */
 
 .world_tile {
-  display: inline;
-  /*padding: 0 5px;*/
+  display: inline-block;
   color: var(--tile-fg);
   background-color: var(--tile-bg);
 }

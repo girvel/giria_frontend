@@ -22,9 +22,12 @@ export default function WorldTile(
     classes += " world_tile__selected";
   }
 
+  const line = tile_characters[data.tile].repeat(2)
+
   return (
     <span className={classes} onClick={handleClick}>
-        {tile_characters[data.tile]}
+        {line}<br />
+        {line}
     </span>
   );
 }
