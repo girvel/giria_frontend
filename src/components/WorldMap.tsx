@@ -26,6 +26,6 @@ export default function WorldMap(
   }
 
   return (
-    <div className="world_map">{arr}</div>
+    <div className="world_map noselect">{arr}</div>
   );
 }
