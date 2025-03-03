@@ -1,0 +1,4 @@
+.info_bar {
+  border: 2px solid black;
+  padding: calc(var(--line-height) - 2px);
+}
