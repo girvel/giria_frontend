@@ -1,5 +1,6 @@
 import { JSX } from 'react';
 import WorldTile from './WorldTile.tsx';
+import './WorldMap.css';
 
 // TODO! types for DTOs
 export default function WorldMap({ map }: {map: any[]}) {
@@ -19,6 +20,6 @@ export default function WorldMap({ map }: {map: any[]}) {
   }
 
   return (
-    <div>{arr}</div>
+    <div className="world_map">{arr}</div>
   );
 }

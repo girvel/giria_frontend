@@ -1,0 +1,36 @@
+/*
+  dead: "#993311",
+  plain: "#00bb00",
+  forest: "#008822",
+  mountain: "#cccccc",
+*/
+
+.world_tile {
+  display: inline;
+  /*padding: 0 5px;*/
+}
+
+.world_tile:hover {
+  background-color: rgba(0, 0, 0, 0) !important;
+  cursor: pointer;
+}
+
+.world_tile__dead {
+  color: #993311;
+  background-color: #33221d;
+}
+
+.world_tile__forest {
+  color: #118822;
+  background-color: #0d4411;
+}
+
+.world_tile__plain {
+  color: #00bb00;
+  background-color: #105515;
+}
+
+.world_tile__mountain {
+  color: #bdbdcc;
+  background-color: #777777;
+}
