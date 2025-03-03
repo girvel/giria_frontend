@@ -1,6 +1,7 @@
 .app {
   --font-size: 20pt;
   --line-height: calc(var(--font-size) * 0.81);
+  --text-color: #dddddd;
 
   display: grid;
   place-items: center;
@@ -8,7 +9,7 @@
   font-family: "Classic Console Neue", Consolas;
   font-size: var(--font-size);
   line-height: var(--line-height);
-  color: #dddddd;
+  color: var(--text-color);
 
   height: 100%;
 }
