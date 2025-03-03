@@ -29,17 +29,17 @@
 
 .world_tile__dead {
   --tile-fg: #993311;
-  --tile-bg: #33221d;
+  --tile-bg: #44332d;
 }
 
 .world_tile__forest {
-  --tile-fg: #118822;
-  --tile-bg: #0d4411;
+  --tile-fg: #448811;
+  --tile-bg: #0d3922;
 }
 
 .world_tile__plain {
-  --tile-fg: #00bb00;
-  --tile-bg: #105515;
+  --tile-fg: #55bb33;
+  --tile-bg: #406620;
 }
 
 .world_tile__mountain {
