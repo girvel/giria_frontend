@@ -1,3 +1,4 @@
+import { TileType } from '../api';
 import './WorldTile.css';
 
 const tile_characters: { [_: string]: string } = {
@@ -7,7 +8,7 @@ const tile_characters: { [_: string]: string } = {
   mountain: "^",
 };
 
-export default function WorldTile({ tile }: { tile: string }) {
+export default function WorldTile({ tile }: { tile: TileType }) {
   return (
     <span className={`world_tile world_tile__${tile}`}>
         {tile_characters[tile]}

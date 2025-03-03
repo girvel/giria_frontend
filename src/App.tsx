@@ -1,30 +1,20 @@
 import {useEffect, useState} from 'react';
-import WorldMap from './WorldMap';
-import InfoBar from './InfoBar';
+import WorldMap from './components/WorldMap';
+import InfoBar from './components/InfoBar';
 import './App.css';
+import { fetchWorldMap, WorldTileData } from './api';
 
 export default function App() {
-    const [worldMap, setWorldMap] = useState(null);
+    const [worldMap, setWorldMap] = useState<WorldTileData[][] | null>(null);
 
     useEffect(() => {
-        async function fetchWorldMap() {
-          const response = await fetch("http://localhost:8080/global_map");
-          const json = await response.json();
-          setWorldMap(json);
-        }
-
-        fetchWorldMap();
+      fetchWorldMap().then((map) => setWorldMap(map));
     }, []);
-
-    const map_render =
-      worldMap === null
-      ? (<span>Loading...</span>)
-      : (<WorldMap map={worldMap} />);
 
     return (
       <div className="app">
         <div className="app__flex_container">
-          {map_render}
+          <WorldMap map={worldMap} />
           <InfoBar />
         </div>
       </div>
