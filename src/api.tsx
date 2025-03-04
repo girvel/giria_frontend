@@ -6,7 +6,14 @@ export interface WorldTileData {
   x: number,
   y: number,
   tile: TileType,
-}
+  city: City | null,
+};
+
+export interface City {
+  city_id: number,
+  player_login: string,
+  population: number,
+};
 
 export async function fetchWorldMap(): Promise<WorldTileData[][]> {
   const response = await fetch(ADDRESS + "global_map");

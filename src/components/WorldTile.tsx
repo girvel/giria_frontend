@@ -17,7 +17,7 @@ export default function WorldTile(
     setSelected(data);
   };
 
-  var classes = `world_tile world_tile__${data.tile}`;
+  let classes = `world_tile world_tile__${data.tile}`;
   if (selected == data) {
     classes += " world_tile__selected";
   }
