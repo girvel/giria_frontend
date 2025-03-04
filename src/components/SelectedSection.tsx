@@ -28,8 +28,8 @@ export default function SelectedSection({ selected }: { selected: WorldTileData 
   if (selected.city !== null) {
     result = (
       <>
-        {result}
         <p>CITY #{selected.city.city_id}</p>
+        {result}
       </>
     )
   }

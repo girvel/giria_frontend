@@ -1,11 +1,16 @@
 import { WorldTileData } from '../api';
 import './WorldTile.css';
 
-const tile_characters: { [_: string]: string } = {
+const TILE_CHARACTERS: { [_: string]: string } = {
   dead: ".",
   plain: "-",
   forest: "f",
   mountain: "^",
+};
+
+const CITY = {
+  CHARACTER: "C",
+  COLOR: "#dddddd",
 };
 
 export default function WorldTile(
@@ -22,12 +27,15 @@ export default function WorldTile(
     classes += " world_tile__selected";
   }
 
-  const line = tile_characters[data.tile].repeat(2)
+  const tile = TILE_CHARACTERS[data.tile]
+  const city = data.city === null
+    ? tile
+    : (<span style={{color: CITY.COLOR}}>{CITY.CHARACTER}</span>);
 
   return (
     <span className={classes} onClick={handleClick}>
-        {line}<br />
-        {line}
+        {city}{tile}<br />
+        {tile}{tile}
     </span>
   );
 }
