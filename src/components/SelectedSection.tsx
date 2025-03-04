@@ -28,7 +28,7 @@ export default function SelectedSection({ selected }: { selected: WorldTileData 
   if (selected.city !== null) {
     result = (
       <>
-        <p>CITY #{selected.city.city_id}</p>
+        <p>{selected.city.city_name.toUpperCase()}</p>
         <p>
           Population: {selected.city.population}<br />
           Owner: {selected.city.player_login}<br />
