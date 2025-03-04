@@ -16,7 +16,7 @@ export interface City {
 };
 
 export async function fetchWorldMap(): Promise<WorldTileData[][]> {
-  const response = await fetch(ADDRESS + "global_map");
+  const response = await fetch(ADDRESS + "world_map");
   const json: WorldTileData[] = await response.json();
 
   let result: WorldTileData[][] = [];
