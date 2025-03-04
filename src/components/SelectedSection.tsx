@@ -29,6 +29,10 @@ export default function SelectedSection({ selected }: { selected: WorldTileData 
     result = (
       <>
         <p>CITY #{selected.city.city_id}</p>
+        <p>
+          Population: {selected.city.population}<br />
+          Owner: {selected.city.player_login}<br />
+        </p>
         {result}
       </>
     )
