@@ -1,5 +1,5 @@
 .info_bar {
   border: 2px solid var(--text-color);
   padding: calc(var(--line-height) - 2px);
-  width: calc(15 * var(--font-size));  /* TODO not 15 characters, actually */
+  width: 20ch;
 }

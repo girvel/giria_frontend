@@ -12,6 +12,22 @@ export default function App() {
       fetchWorldMap().then((map) => setWorldMap(map));
     }, []);
 
+    useEffect(() => {
+      fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          login: 'remnants',
+          password: 'password',
+        }),
+      })
+      .then(response => response.json())
+      .then(console.log)
+      .catch(console.error);
+    }, []);
+
     return (
       <div className="app">
         <div className="app__flex_container">

@@ -16,7 +16,7 @@
 
 .app__flex_container {
   display: inline-flex;
-  gap: calc(var(--font-size) * 2);  /* TODO Doesn't produce 2 character gap */
+  gap: 2ch;
 }
 
 p {
