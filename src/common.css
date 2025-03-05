@@ -1,0 +1,79 @@
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+p {
+  margin: 0 0 var(--line-height) 0;
+}
+
+pre {
+  font: inherit;
+}
+
+body {
+  --font-size: 20pt;
+  --line-height: calc(var(--font-size) * 0.81);
+  --text-color: #dddddd;
+  --bg: #454040;
+
+  --fancy-red: #dd3d54;
+
+  background-color: var(--bg);
+}
+
+h1, h2, h3, h4, h5, h6, h7, h8 {
+  font-weight: inherit;
+  padding-bottom: 100px;
+}
+
+h1 {
+  color: var(--fancy-red);
+}
+
+input, button {
+  --offset: 2px;
+
+  background: none;
+  padding: 0;
+  border: none;
+
+  outline: 2px solid var(--text-color);
+
+  font: inherit;
+  color: inherit;
+}
+
+input {
+  width: 20ch;
+  outline-offset: calc(2 * var(--offset));
+  height: calc(var(--line-height) + var(--offset) * 2);
+  margin: calc(-1 * var(--offset)) 0;
+}
+
+button {
+  color: var(--bg);
+  background: var(--text-color);
+  height: calc(var(--line-height) + var(--offset) * 4);
+  margin: calc(-2 * var(--offset)) 0;
+}
+
+button:hover {
+  color: inherit;
+  background: transparent;
+}
+
+button:active {
+  color: inherit;
+  background: var(--fancy-red);
+}
+
+.fancy_button {
+  min-width: 10ch;
+}
+

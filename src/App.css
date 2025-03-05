@@ -1,8 +1,4 @@
 .app {
-  --font-size: 20pt;
-  --line-height: calc(var(--font-size) * 0.81);
-  --text-color: #dddddd;
-
   display: grid;
   place-items: center;
 
@@ -19,6 +15,3 @@
   gap: 2ch;
 }
 
-p {
-  margin: 0 0 var(--line-height) 0;
-}

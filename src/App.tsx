@@ -3,50 +3,61 @@ import WorldMap from './components/WorldMap';
 import InfoBar from './components/InfoBar';
 import './App.css';
 import { fetchWorldMap, WorldTileData } from './api';
+import LoginForm from './components/LoginForm';
 
 export default function App() {
+    const [login, setLogin] = useState<string | null>(null);
     const [worldMap, setWorldMap] = useState<WorldTileData[][] | null>(null);
     const [selected, setSelected] = useState<WorldTileData | null>(null);
+
+    if (login === null) {
+      return (
+        <div className="app">
+          <LoginForm setLogin={setLogin} />
+        </div>
+      );
+    }
 
     useEffect(() => {
       fetchWorldMap().then((map) => setWorldMap(map));
     }, []);
 
-    useEffect(() => {
-      async function testAuth() {
-        const response = await fetch("http://localhost:8080/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            login: 'girvel',
-            password: 'girvel',
-          }),
-        });
+    // useEffect(() => {
+    //   async function testAuth() {
+    //     const response = await fetch("http://localhost:8080/login", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({
+    //         login: 'girvel',
+    //         password: 'girvel',
+    //       }),
+    //       credentials: "include",
+    //     });
 
-        const jwt: string = (await response.json()).token;
+    //     console.log(response);
+    //     console.log(await response.json());
 
-        console.log("Token:", jwt);
+    //     const response2 = await fetch("http://localhost:8080/settle", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       credentials: "include",
+    //       body: JSON.stringify({
+    //         x: 0,
+    //         y: 0,
+    //         city_name: 'Dirthelm',
+    //       }),
+    //     });
 
-        const response2 = await fetch("http://localhost:8080/settle", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${jwt}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            x: 0,
-            y: 0,
-            city_name: 'Dirtberg',
-          }),
-        });
+    //     console.log(response2);
+    //     console.log(await response2.json());
+    //   }
 
-        console.log(response2);
-      }
-
-      testAuth();
-    }, []);
+    //   testAuth();
+    // }, []);
 
     return (
       <div className="app">
