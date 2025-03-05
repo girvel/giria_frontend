@@ -13,19 +13,39 @@ export default function App() {
     }, []);
 
     useEffect(() => {
-      fetch("http://localhost:8080/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          login: 'remnants',
-          password: 'password',
-        }),
-      })
-      .then(response => response.json())
-      .then(console.log)
-      .catch(console.error);
+      async function testAuth() {
+        const response = await fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            login: 'girvel',
+            password: 'girvel',
+          }),
+        });
+
+        const jwt: string = (await response.json()).token;
+
+        console.log("Token:", jwt);
+
+        const response2 = await fetch("http://localhost:8080/settle", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${jwt}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            x: 0,
+            y: 0,
+            city_name: 'Dirtberg',
+          }),
+        });
+
+        console.log(response2);
+      }
+
+      testAuth();
     }, []);
 
     return (
