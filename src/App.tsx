@@ -18,46 +18,9 @@ export default function App() {
       );
     }
 
-    useEffect(() => {
+    if (worldMap === null) {
       fetchWorldMap().then((map) => setWorldMap(map));
-    }, []);
-
-    // useEffect(() => {
-    //   async function testAuth() {
-    //     const response = await fetch("http://localhost:8080/login", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         login: 'girvel',
-    //         password: 'girvel',
-    //       }),
-    //       credentials: "include",
-    //     });
-
-    //     console.log(response);
-    //     console.log(await response.json());
-
-    //     const response2 = await fetch("http://localhost:8080/settle", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       credentials: "include",
-    //       body: JSON.stringify({
-    //         x: 0,
-    //         y: 0,
-    //         city_name: 'Dirthelm',
-    //       }),
-    //     });
-
-    //     console.log(response2);
-    //     console.log(await response2.json());
-    //   }
-
-    //   testAuth();
-    // }, []);
+    }
 
     return (
       <div className="app">
