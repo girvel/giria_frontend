@@ -1,17 +1,17 @@
 import React, { useRef, useState } from "react";
-import { login } from "../api";
+import { login, fetchPlayerInfo } from "../api";
 import './LoginForm.css';
 
 
-export default function LoginForm({ setLogin }: { setLogin: any }) {
+export default function LoginForm({ setPlayerInfo }: { setPlayerInfo: any }) {
   const actionType = useRef<null | "signin" | "signup">(null);
   const [currentError, setCurrentError] = useState("");
 
-  const handleSigninClick = (event: React.SyntheticEvent<HTMLButtonElement>) => {
+  const handleSigninClick = (_event: React.SyntheticEvent<HTMLButtonElement>) => {
     actionType.current = "signin";
   };
 
-  const handleSignupClick = (event: React.SyntheticEvent<HTMLButtonElement>) => {
+  const handleSignupClick = (_event: React.SyntheticEvent<HTMLButtonElement>) => {
     actionType.current = "signup";
   };
 
@@ -24,7 +24,8 @@ export default function LoginForm({ setLogin }: { setLogin: any }) {
 
     if (actionType.current == "signin") {
       login(login_value, password)
-        .then(() => setLogin(login_value))
+        .then(fetchPlayerInfo)
+        .then(setPlayerInfo)
         .catch(err => setCurrentError(err.response.data.detail));
     }
     else if (actionType.current == "signup") {

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 
+axios.defaults.withCredentials = true;
 const ADDRESS = "http://localhost:8080"
 
 export type TileType = "dead" | "plain" | "forest" | "mountain";
@@ -54,5 +55,14 @@ export async function login(login: string, password: string): Promise<void> {
     login: login,
     password: password,
   });
+}
+
+export interface PlayerInfo {
+  login: string,
+  settled: boolean,
+};
+
+export async function fetchPlayerInfo(): Promise<PlayerInfo> {
+  return (await axios.get(`${ADDRESS}/player_info`)).data;
 }
 
