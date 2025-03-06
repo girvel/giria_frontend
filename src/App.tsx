@@ -10,16 +10,18 @@ export default function App() {
     const [worldMap, setWorldMap] = useState<WorldTileData[][] | null>(null);
     const [selected, setSelected] = useState<WorldTileData | null>(null);
 
+    useEffect(() => {
+      if (worldMap === null && login !== null) {
+        fetchWorldMap().then((map) => setWorldMap(map));
+      }
+    }, [login]);
+
     if (login === null) {
       return (
         <div className="app">
           <LoginForm setLogin={setLogin} />
         </div>
       );
-    }
-
-    if (worldMap === null) {
-      fetchWorldMap().then((map) => setWorldMap(map));
     }
 
     return (
