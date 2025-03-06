@@ -5,8 +5,8 @@ export default function PlayerSection({ playerInfo, resources }: { playerInfo: P
     <>
       <p>{playerInfo.login.toUpperCase()}</p>
       <p>
-        Gold: {resources.gold}<br />
-        Wood: {resources.wood}
+        Gold: <span className="resource">{resources.gold}</span><br />
+        Wood: <span className="resource">{resources.wood}</span>
       </p>
     </>
   );

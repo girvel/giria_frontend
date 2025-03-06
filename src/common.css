@@ -80,3 +80,7 @@ button:active {
   margin: calc(-2 * var(--offset)) 0;
 }
 
+.resource {
+  color: #e0d95e;
+}
+
