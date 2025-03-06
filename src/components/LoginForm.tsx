@@ -46,7 +46,7 @@ export default function LoginForm({ setPlayerInfo, setResources }: { setPlayerIn
   return (
     <pre>
       <h1>The land of Giria</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method="dialog">
         <p>
           Login:<span>     </span>
           <input autoComplete="text" name="login" required>
