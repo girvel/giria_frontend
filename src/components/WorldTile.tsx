@@ -11,16 +11,16 @@ const TILE_CHARACTERS: { [_: string]: string } = {
 const CITY_CHARACTER = "C";
 
 export default function WorldTile(
-  { data, selected, setSelected }: { 
-    data: WorldTileData, selected: WorldTileData | null, setSelected: any
+  { data, is_selected, setSelected }: { 
+    data: WorldTileData, is_selected: boolean, setSelected: any
   }
 ) {
   const handleClick = () => {
-    setSelected(data);
+    setSelected([data.x, data.y]);
   };
 
   let classes = `world_tile world_tile__${data.tile}`;
-  if (selected == data) {
+  if (is_selected) {
     classes += " world_tile__selected";
   }
 

@@ -1,10 +1,10 @@
 import { JSX } from 'react';
 import WorldTile from './WorldTile.tsx';
 import './WorldMap.css';
-import { WorldTileData } from '../api.tsx';
+import { Point, pointEq, World } from '../api.tsx';
 
 export default function WorldMap(
-  { map, selected, setSelected }: {map: WorldTileData[][] | null, selected: WorldTileData | null, setSelected: any}
+  { map, selected, setSelected }: {map: World | null, selected: Point | null, setSelected: any}
 ) {
   if (map === null) {
     return (
@@ -14,10 +14,10 @@ export default function WorldMap(
 
   let arr: JSX.Element[] = [];
   let i = 0;
-  for (const line of map) {
-    for (const data of line) {
+  for (const [y, line] of map.inner.entries()) {
+    for (const [x, data] of line.entries()) {
       arr.push((
-        <WorldTile data={data} selected={selected} setSelected={setSelected} key={i} />
+        <WorldTile data={data} is_selected={pointEq([x, y], selected)} setSelected={setSelected} key={i} />
       ))
       i++;
     }

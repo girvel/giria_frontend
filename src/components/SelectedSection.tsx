@@ -9,10 +9,10 @@ const tile_type_names: { [_: string]: string } = {
 };
 
 export default function SelectedSection(
-  { selected, playerInfo, setPlayerInfo }
-    : { selected: WorldTileData | null, playerInfo: PlayerInfo, setPlayerInfo: any }
+  { selectionInfo, playerInfo, setPlayerInfo }
+    : { selectionInfo: WorldTileData | null, playerInfo: PlayerInfo, setPlayerInfo: any }
 ) {
-  if (selected === null) {
+  if (selectionInfo === null) {
     return (
       <p>-- NO SELECTION --</p>
     );
@@ -20,28 +20,28 @@ export default function SelectedSection(
 
   let result = (
     <>
-      <p>{tile_type_names[selected.tile].toUpperCase()}</p>
+      <p>{tile_type_names[selectionInfo.tile].toUpperCase()}</p>
       <p>
-        X: {selected.x}<br />
-        Y: {selected.y}<br />
+        X: {selectionInfo.x}<br />
+        Y: {selectionInfo.y}<br />
       </p>
     </>
   );
 
-  if (selected.city !== null) {
+  if (selectionInfo.city !== null) {
     result = (
       <>
-        <p>{selected.city.city_name.toUpperCase()}</p>
+        <p>{selectionInfo.city.city_name.toUpperCase()}</p>
         <p>
-          Population: {selected.city.population}<br />
-          Owner: {selected.city.player_login}<br />
+          Population: {selectionInfo.city.population}<br />
+          Owner: {selectionInfo.city.player_login}<br />
         </p>
         {result}
       </>
     )
   } else if (!playerInfo.settled) {
     const handleClick = () => {
-      settle(selected.x, selected.y, "Dirthelm")
+      settle(selectionInfo.x, selectionInfo.y, "Dirthelm")
         .then(() => setPlayerInfo({...playerInfo, settled: true}));
     };
 

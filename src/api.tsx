@@ -20,7 +20,27 @@ export interface City {
   population: number,
 };
 
-export async function fetchWorldMap(): Promise<WorldTileData[][]> {
+export type Point = [number, number];
+
+export function pointEq(a: Point | null, b: Point | null): boolean {
+  if (a === b) return true;
+  if (a === null || b === null) return false;
+  return a[0] === b[0] && a[1] === b[1];
+}
+
+export class Grid<T> {
+  inner: T[][];
+  constructor(inner: T[][]) {
+    this.inner = inner;
+  }
+  get(p: Point): T {
+    return this.inner[p[1]][p[0]];
+  }
+}
+
+export type World = Grid<WorldTileData>;
+
+export async function fetchWorldMap(): Promise<World> {
   const response = await fetch(`${ADDRESS}/world_map`);
   const json: WorldTileData[] = await response.json();
 
@@ -32,7 +52,7 @@ export async function fetchWorldMap(): Promise<WorldTileData[][]> {
     result[entry.y][entry.x] = entry;
   }
 
-  return result;
+  return new Grid(result);
 }
 
 export async function login(login: string, password: string): Promise<void> {
