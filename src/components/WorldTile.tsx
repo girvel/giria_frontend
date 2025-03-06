@@ -1,4 +1,4 @@
-import { WorldTileData } from '../api';
+import { WorldTileData } from '../model/types';
 import './WorldTile.css';
 
 const TILE_CHARACTERS: { [_: string]: string } = {

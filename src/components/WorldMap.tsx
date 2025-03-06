@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 import WorldTile from './WorldTile.tsx';
 import './WorldMap.css';
-import { Point, pointEq, World } from '../api.tsx';
+import { Point, pointEq, World } from '../model/types.tsx';
 
 export default function WorldMap(
   { map, selected, setSelected }: {map: World | null, selected: Point | null, setSelected: any}

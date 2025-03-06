@@ -1,4 +1,4 @@
-import { PlayerInfo, WorldTileData } from '../api';
+import { PlayerInfo, WorldTileData } from '../model/types';
 import './InfoBar.css';
 import PlayerSection from './PlayerSection';
 import SelectedSection from './SelectedSection';

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { login, fetchPlayerInfo } from "../api";
+import { login, fetchPlayerInfo } from "../model/api";
 import './LoginForm.css';
 
 

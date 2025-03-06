@@ -1,4 +1,5 @@
-import { PlayerInfo, settle, WorldTileData } from "../api";
+import { settle } from "../model/api";
+import { PlayerInfo, WorldTileData } from "../model/types";
 
 
 const tile_type_names: { [_: string]: string } = {

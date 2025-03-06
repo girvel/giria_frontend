@@ -2,8 +2,9 @@ import {useEffect, useState} from 'react';
 import WorldMap from './components/WorldMap';
 import InfoBar from './components/InfoBar';
 import './App.css';
-import { fetchWorldMap, PlayerInfo, Point, World } from './api';
-import LoginForm from './components/LoginForm';
+import { fetchWorldMap } from './model/api.tsx';
+import { PlayerInfo, Point, World } from './model/types.tsx';
+import LoginForm from './components/LoginForm.tsx';
 
 
 export default function App() {
