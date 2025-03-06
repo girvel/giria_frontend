@@ -2,4 +2,5 @@
   border: 2px solid var(--text-color);
   padding: calc(var(--line-height) - 2px);
   width: 20ch;
+  background-color: #4f3e2d;
 }

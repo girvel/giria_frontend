@@ -20,7 +20,7 @@ body {
   --font-size: 20pt;
   --line-height: calc(var(--font-size) * 0.81);
   --text-color: #dddddd;
-  --bg: #454040;
+  --bg: #2d3e4f;
 
   --fancy-red: #dd3d54;
 
