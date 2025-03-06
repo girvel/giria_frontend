@@ -12,7 +12,12 @@ export default function App() {
 
     useEffect(() => {
       if (playerInfo === null) return;
-      fetchWorldMap().then((map) => setWorldMap(map));
+
+      const updateWorldMap = async () => setWorldMap(await fetchWorldMap());
+      updateWorldMap();
+
+      const id = setInterval(updateWorldMap, 1000);
+      return () => clearInterval(id);
     }, [playerInfo]);
 
     if (playerInfo === null) {
