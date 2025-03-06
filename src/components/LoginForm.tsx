@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { login, fetchPlayerInfo } from "../model/api";
+import { login, fetchPlayerInfo, fetchResources } from "../model/api";
 import './LoginForm.css';
 
 
-export default function LoginForm({ setPlayerInfo }: { setPlayerInfo: any }) {
+export default function LoginForm({ setPlayerInfo, setResources }: { setPlayerInfo: any, setResources: any }) {
   const actionType = useRef<null | "signin" | "signup">(null);
   const [currentError, setCurrentError] = useState("");
 
@@ -24,9 +24,17 @@ export default function LoginForm({ setPlayerInfo }: { setPlayerInfo: any }) {
 
     if (actionType.current == "signin") {
       login(login_value, password)
-        .then(fetchPlayerInfo)
-        .then(setPlayerInfo)
-        .catch(err => setCurrentError(err.response.data.detail));
+        .then(async () => {
+          const playerInfo = await fetchPlayerInfo();
+          const resources = await fetchResources();
+
+          setPlayerInfo(playerInfo);
+          setResources(resources);
+        })
+        .catch(err => {
+          console.error(err);
+          setCurrentError(err?.response?.data?.detail ?? "Unknown error")
+        });
     }
     else if (actionType.current == "signup") {
     }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Grid, PlayerInfo, World, WorldTileData } from './types.tsx';
+import { Grid, PlayerInfo, Resources, World, WorldTileData } from './types.tsx';
 
 
 axios.defaults.withCredentials = true;
@@ -37,5 +37,9 @@ export async function settle(x: number, y: number, city_name: string): Promise<v
     y: y,
     city_name: city_name,
   });
+}
+
+export async function fetchResources(): Promise<Resources> {
+  return (await axios.get(`${ADDRESS}/resources`)).data;
 }
 

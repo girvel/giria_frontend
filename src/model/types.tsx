@@ -38,3 +38,8 @@ export interface PlayerInfo {
   login: string,
   settled: boolean,
 };
+
+export interface Resources {
+  gold: number,
+  wood: number,
+};
