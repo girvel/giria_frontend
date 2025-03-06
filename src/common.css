@@ -60,7 +60,9 @@ button {
   color: var(--bg);
   background: var(--text-color);
   height: calc(var(--line-height) + var(--offset) * 4);
-  margin: calc(-2 * var(--offset)) 0;
+  margin:
+    calc(-2 * var(--offset)) 0
+    calc(-2 * var(--offset) + var(--line-height)) 0;
 }
 
 button:hover {
@@ -75,5 +77,6 @@ button:active {
 
 .fancy_button {
   min-width: 10ch;
+  margin: calc(-2 * var(--offset)) 0;
 }
 

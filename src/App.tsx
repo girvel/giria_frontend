@@ -11,9 +11,8 @@ export default function App() {
     const [selected, setSelected] = useState<WorldTileData | null>(null);
 
     useEffect(() => {
-      if (worldMap === null && playerInfo !== null) {
-        fetchWorldMap().then((map) => setWorldMap(map));
-      }
+      if (playerInfo === null) return;
+      fetchWorldMap().then((map) => setWorldMap(map));
     }, [playerInfo]);
 
     if (playerInfo === null) {
@@ -28,7 +27,7 @@ export default function App() {
       <div className="app">
         <div className="app__flex_container">
           <WorldMap map={worldMap} selected={selected} setSelected={setSelected} />
-          <InfoBar selected={selected} playerInfo={playerInfo} />
+          <InfoBar selected={selected} playerInfo={playerInfo} setPlayerInfo={setPlayerInfo} />
         </div>
       </div>
     );

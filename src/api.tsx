@@ -34,22 +34,6 @@ export async function fetchWorldMap(): Promise<WorldTileData[][]> {
   return result;
 }
 
-// const response2 = await fetch("http://localhost:8080/settle", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   credentials: "include",
-//   body: JSON.stringify({
-//     x: 0,
-//     y: 0,
-//     city_name: 'Dirthelm',
-//   }),
-// });
-
-// console.log(response2);
-// console.log(await response2.json());
-
 export async function login(login: string, password: string): Promise<void> {
   await axios.post(`${ADDRESS}/login`, {
     login: login,
@@ -64,5 +48,13 @@ export interface PlayerInfo {
 
 export async function fetchPlayerInfo(): Promise<PlayerInfo> {
   return (await axios.get(`${ADDRESS}/player_info`)).data;
+}
+
+export async function settle(x: number, y: number, city_name: string): Promise<void> {
+  await axios.post(`${ADDRESS}/settle`, {
+    x: x,
+    y: y,
+    city_name: city_name,
+  });
 }
 

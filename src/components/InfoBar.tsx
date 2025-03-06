@@ -5,13 +5,14 @@ import SelectedSection from './SelectedSection';
 
 
 export default function InfoBar(
-  { selected, playerInfo }: {selected: WorldTileData | null, playerInfo: PlayerInfo }
+  { selected, playerInfo, setPlayerInfo }
+    : {selected: WorldTileData | null, playerInfo: PlayerInfo, setPlayerInfo: any }
 ) {
   return (
     <div className="info_bar">
       <PlayerSection playerInfo={playerInfo} />
       <p>--------------------</p>
-      <SelectedSection selected={selected} />
+      <SelectedSection selected={selected} playerInfo={playerInfo} setPlayerInfo={setPlayerInfo} />
     </div>
   )
 }

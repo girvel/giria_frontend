@@ -1,4 +1,4 @@
-import { WorldTileData } from "../api";
+import { PlayerInfo, settle, WorldTileData } from "../api";
 
 
 const tile_type_names: { [_: string]: string } = {
@@ -8,7 +8,10 @@ const tile_type_names: { [_: string]: string } = {
   mountain: "mountain",
 };
 
-export default function SelectedSection({ selected }: { selected: WorldTileData | null }) {
+export default function SelectedSection(
+  { selected, playerInfo, setPlayerInfo }
+    : { selected: WorldTileData | null, playerInfo: PlayerInfo, setPlayerInfo: any }
+) {
   if (selected === null) {
     return (
       <p>-- NO SELECTION --</p>
@@ -33,6 +36,18 @@ export default function SelectedSection({ selected }: { selected: WorldTileData 
           Population: {selected.city.population}<br />
           Owner: {selected.city.player_login}<br />
         </p>
+        {result}
+      </>
+    )
+  } else if (!playerInfo.settled) {
+    const handleClick = () => {
+      settle(selected.x, selected.y, "Dirthelm")
+        .then(() => setPlayerInfo({...playerInfo, settled: true}));
+    };
+
+    result = (
+      <>
+        <p><button onClick={handleClick}>Settle here</button></p>
         {result}
       </>
     )
