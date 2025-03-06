@@ -8,10 +8,7 @@ const TILE_CHARACTERS: { [_: string]: string } = {
   mountain: "^",
 };
 
-const CITY = {
-  CHARACTER: "C",
-  COLOR: "#dddddd",
-};
+const CITY_CHARACTER = "C";
 
 export default function WorldTile(
   { data, selected, setSelected }: { 
@@ -30,7 +27,7 @@ export default function WorldTile(
   const tile = TILE_CHARACTERS[data.tile]
   const city = data.city === null
     ? tile
-    : (<span style={{color: CITY.COLOR}}>{CITY.CHARACTER}</span>);
+    : (<span style={{color: "#" + data.city.player_color}}>{CITY_CHARACTER}</span>);
 
   return (
     <span className={classes} onClick={handleClick}>

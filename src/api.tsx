@@ -16,6 +16,7 @@ export interface WorldTileData {
 export interface City {
   city_name: string,
   player_login: string,
+  player_color: string,
   population: number,
 };
 
