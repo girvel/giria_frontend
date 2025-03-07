@@ -4,6 +4,7 @@ export interface WorldTileData {
   x: number,
   y: number,
   tile: TileType,
+  configuration: number,
   city: City | null,
 };
 

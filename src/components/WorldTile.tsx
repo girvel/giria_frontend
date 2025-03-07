@@ -1,5 +1,6 @@
 import { WorldTileData } from '../model/types';
 import './WorldTile.css';
+import { JSX } from 'react';
 
 const TILE_CHARACTERS: { [_: string]: string } = {
   dead: ".",
@@ -11,8 +12,8 @@ const TILE_CHARACTERS: { [_: string]: string } = {
 const CITY_CHARACTER = "C";
 
 export default function WorldTile(
-  { data, is_selected, setSelected }: { 
-    data: WorldTileData, is_selected: boolean, setSelected: any
+  { data, prev_tile, is_selected, setSelected }: { 
+    data: WorldTileData, prev_tile: string, is_selected: boolean, setSelected: any
   }
 ) {
   const handleClick = () => {
@@ -24,15 +25,22 @@ export default function WorldTile(
     classes += " world_tile__selected";
   }
 
-  const tile = TILE_CHARACTERS[data.tile]
-  const city = data.city === null
-    ? tile
-    : (<span style={{color: "#" + data.city.player_color}}>{CITY_CHARACTER}</span>);
+  let tiles: (string | JSX.Element)[] = Array(4).fill(TILE_CHARACTERS[data.tile]);
+
+  if (data.configuration < 4) {
+    tiles[data.configuration] = (
+      <span className={`world_tile world_tile__${prev_tile}`}>{TILE_CHARACTERS[prev_tile]}</span>
+    );
+  }
+
+  if (data.city != null) {
+    tiles[0] = (<span style={{color: "#" + data.city.player_color}}>{CITY_CHARACTER}</span>);
+  }
 
   return (
     <span className={classes} onClick={handleClick}>
-        {city}{tile}<br />
-        {tile}{tile}
+        {tiles[0]}{tiles[1]}<br />
+        {tiles[2]}{tiles[3]}
     </span>
   );
 }
