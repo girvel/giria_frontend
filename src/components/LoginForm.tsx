@@ -26,7 +26,7 @@ export default function LoginForm({ setPlayerInfo, setResources }: { setPlayerIn
     if (process.env.NODE_ENV == "development") {
       loginSequence("girvel", "girvel");
     }
-  });
+  }, []);
 
   const handleSigninClick = (_event: React.SyntheticEvent<HTMLButtonElement>) => {
     actionType.current = "signin";
@@ -59,21 +59,21 @@ export default function LoginForm({ setPlayerInfo, setResources }: { setPlayerIn
       <form onSubmit={handleSubmit} method="dialog">
         <p>
           Login:<span>     </span>
-          <input autoComplete="text" name="login" required>
+          <input className="close_aligned" autoComplete="text" name="login" required>
           </input>
         </p>
         <p>
           Password:<span>  </span>
-          <input autoComplete="password" name="password" type="password" required></input>
+          <input className="close_aligned" autoComplete="password" name="password" type="password" required></input>
         </p>
         <p> </p>
         <p>
           <span>          </span>
-          <button className="fancy_button" onClick={handleSigninClick}>Sign in</button>
+          <button className="fancy_button close_aligned" onClick={handleSigninClick}>Sign in</button>
         </p>
         <p>
           <span>          </span>
-          <button className="fancy_button" onClick={handleSignupClick}>Sign up</button>
+          <button className="fancy_button close_aligned" onClick={handleSignupClick}>Sign up</button>
         </p>
         <p> </p>
         <p className="error_report">{currentError}</p>

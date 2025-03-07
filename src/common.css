@@ -53,7 +53,11 @@ input {
   width: 20ch;
   outline-offset: calc(2 * var(--offset));
   height: calc(var(--line-height) + var(--offset) * 2);
-  margin: calc(-1 * var(--offset)) 0;
+  margin:
+    calc(-1 * var(--offset))
+    0
+    calc(var(--line-height) - var(--offset))
+    calc(2px + 2 * var(--offset));
 }
 
 button {
@@ -62,7 +66,7 @@ button {
   height: calc(var(--line-height) + var(--offset) * 4);
   margin:
     calc(-2 * var(--offset)) 0
-    calc(-2 * var(--offset) + var(--line-height)) 0;
+    calc(-2 * var(--offset) + var(--line-height)) 2px;
 }
 
 button:hover {
@@ -77,7 +81,14 @@ button:active {
 
 .fancy_button {
   min-width: 10ch;
+}
+
+button.close_aligned {
   margin: calc(-2 * var(--offset)) 0;
+}
+
+input.close_aligned {
+  margin: calc(-1 * var(--offset)) 0;
 }
 
 .resource {
