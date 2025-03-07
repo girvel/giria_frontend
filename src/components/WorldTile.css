@@ -7,16 +7,20 @@
 
 .world_tile {
   display: inline-block;
+}
+
+.world_tile__subtile {
+  display: inline-block;
   color: var(--tile-fg);
   background-color: var(--tile-bg);
 }
 
-.world_tile:hover {
+.world_tile:hover .world_tile__subtile {
   background-color: rgba(0, 0, 0, 0) !important;
   cursor: pointer;
 }
 
-.world_tile:active {
+.world_tile:active .world_tile__subtile {
   color: var(--tile-bg) !important;
   background-color: var(--tile-fg) !important;
 }

@@ -20,16 +20,18 @@ export default function WorldTile(
     setSelected([data.x, data.y]);
   };
 
-  let classes = `world_tile world_tile__${data.tile}`;
+  let tile_classes = `world_tile world_tile__${data.tile}`;
   if (is_selected) {
-    classes += " world_tile__selected";
+    tile_classes += " world_tile__selected";
   }
 
-  let tiles: (string | JSX.Element)[] = Array(4).fill(TILE_CHARACTERS[data.tile]);
+  let tiles: JSX.Element[] = Array(4).fill((
+    <span className="world_tile__subtile">{TILE_CHARACTERS[data.tile]}</span>
+  ));
 
   if (data.configuration < 4) {
     tiles[data.configuration] = (
-      <span className={`world_tile world_tile__${prev_tile}`}>{TILE_CHARACTERS[prev_tile]}</span>
+      <span className={`world_tile__subtile world_tile__${prev_tile}`}>{TILE_CHARACTERS[prev_tile]}</span>
     );
   }
 
@@ -38,7 +40,7 @@ export default function WorldTile(
   }
 
   return (
-    <span className={classes} onClick={handleClick}>
+    <span className={tile_classes} onClick={handleClick}>
         {tiles[0]}{tiles[1]}<br />
         {tiles[2]}{tiles[3]}
     </span>
