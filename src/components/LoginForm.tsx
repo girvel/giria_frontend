@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { login, fetchPlayerInfo, fetchResources } from "../model/api";
 import './LoginForm.css';
 
@@ -6,6 +6,27 @@ import './LoginForm.css';
 export default function LoginForm({ setPlayerInfo, setResources }: { setPlayerInfo: any, setResources: any }) {
   const actionType = useRef<null | "signin" | "signup">(null);
   const [currentError, setCurrentError] = useState("");
+
+  const loginSequence = (loginValue: string, password: string) => {
+    login(loginValue, password)
+      .then(async () => {
+        const playerInfo = await fetchPlayerInfo();
+        const resources = await fetchResources();
+
+        setPlayerInfo(playerInfo);
+        setResources(resources);
+      })
+      .catch(err => {
+        console.error(err);
+        setCurrentError(err?.response?.data?.detail ?? "Unknown error")
+      });
+  };
+
+  useEffect(() => {
+    if (process.env.NODE_ENV == "development") {
+      loginSequence("girvel", "girvel");
+    }
+  });
 
   const handleSigninClick = (_event: React.SyntheticEvent<HTMLButtonElement>) => {
     actionType.current = "signin";
@@ -19,22 +40,11 @@ export default function LoginForm({ setPlayerInfo, setResources }: { setPlayerIn
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
-    const login_value = formData.get("login") as string
+    const loginValue = formData.get("login") as string
     const password = formData.get("password") as string
 
     if (actionType.current == "signin") {
-      login(login_value, password)
-        .then(async () => {
-          const playerInfo = await fetchPlayerInfo();
-          const resources = await fetchResources();
-
-          setPlayerInfo(playerInfo);
-          setResources(resources);
-        })
-        .catch(err => {
-          console.error(err);
-          setCurrentError(err?.response?.data?.detail ?? "Unknown error")
-        });
+      loginSequence(loginValue, password);
     }
     else if (actionType.current == "signup") {
     }
