@@ -3,4 +3,7 @@
   padding: calc(var(--line-height) - 2px);
   width: 20ch;
   background-color: #4f3e2d;
+
+  text-shadow: 2px 2px #282028;
+  box-shadow: 2px 2px #282028;
 }
