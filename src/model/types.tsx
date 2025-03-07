@@ -6,6 +6,7 @@ export interface WorldTileData {
   tile: TileType,
   configuration: number,
   city: City | null,
+  army: Army | null,
 };
 
 export interface City {
@@ -13,6 +14,12 @@ export interface City {
   player_login: string,
   player_color: string,
   population: number,
+};
+
+export interface Army {
+  owner: string,
+  size: number,
+  color: string,
 };
 
 export type Point = [number, number];

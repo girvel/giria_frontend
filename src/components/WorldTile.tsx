@@ -10,6 +10,7 @@ const TILE_CHARACTERS: { [_: string]: string } = {
 };
 
 const CITY_CHARACTER = "C";
+const ARMY_CHARACTER = "A";
 
 export default function WorldTile(
   { data, prev_tile, is_selected, setSelected }: { 
@@ -31,12 +32,18 @@ export default function WorldTile(
 
   if (data.configuration < 4) {
     tiles[data.configuration] = (
-      <span className={`world_tile__subtile world_tile__${prev_tile}`}>{TILE_CHARACTERS[prev_tile]}</span>
+      <span className={`world_tile__subtile world_tile__${prev_tile}`}>
+        {TILE_CHARACTERS[prev_tile]}
+      </span>
     );
   }
 
   if (data.city != null) {
     tiles[0] = (<span style={{color: "#" + data.city.player_color}}>{CITY_CHARACTER}</span>);
+  }
+
+  if (data.army != null) {
+    tiles[3] = (<span style={{color: "#" + data.army.color}}>{ARMY_CHARACTER}</span>);
   }
 
   return (
