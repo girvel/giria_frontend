@@ -39,11 +39,24 @@ export default function WorldTile(
   }
 
   if (data.city != null) {
-    tiles[0] = (<span style={{color: "#" + data.city.player_color}}>{CITY_CHARACTER}</span>);
+    const tile = data.configuration == 0 ? prev_tile : data.tile;
+    tiles[0] = (
+      <span
+        className={`world_tile__subtile world_tile__${tile}`}
+        style={{color: "#" + data.city.player_color}}
+      >
+        {CITY_CHARACTER}
+      </span>
+    );
   }
 
   if (data.army != null) {
-    tiles[3] = (<span style={{color: "#" + data.army.color}}>{ARMY_CHARACTER}</span>);
+    const tile = data.configuration == 3 ? prev_tile : data.tile;
+    tiles[3] = (
+      <span
+        className={`world_tile__subtile world_tile__${tile}`}
+        style={{color: "#" + data.army.color}}
+      >{ARMY_CHARACTER}</span>);
   }
 
   return (

@@ -1,13 +1,8 @@
-import { settle } from "../model/api";
 import { PlayerInfo, WorldTileData } from "../model/types";
+import ArmySection from "./ArmySection";
+import CitySection from "./CitySection";
+import TileSection from "./TileSection";
 
-
-const tile_type_names: { [_: string]: string } = {
-  dead: "dead lands",
-  plain: "plain",
-  forest: "forest",
-  mountain: "mountain",
-};
 
 export default function SelectedSection(
   { selectionInfo, playerInfo, setPlayerInfo }
@@ -19,40 +14,14 @@ export default function SelectedSection(
     );
   }
 
-  let result = (
+  return (
     <>
-      <p>{tile_type_names[selectionInfo.tile].toUpperCase()}</p>
-      <p>
-        X: {selectionInfo.x}<br />
-        Y: {selectionInfo.y}<br />
-      </p>
+      <CitySection
+        x={selectionInfo.x} y={selectionInfo.y} city={selectionInfo.city}
+        playerInfo={playerInfo} setPlayerInfo={setPlayerInfo}
+      />
+      <ArmySection army={selectionInfo.army} />
+      <TileSection tile={selectionInfo.tile} x={selectionInfo.x} y={selectionInfo.y} />
     </>
   );
-
-  if (selectionInfo.city !== null) {
-    result = (
-      <>
-        <p>{selectionInfo.city.city_name.toUpperCase()}</p>
-        <p>
-          Population: {selectionInfo.city.population}<br />
-          Owner: {selectionInfo.city.player_login}<br />
-        </p>
-        {result}
-      </>
-    )
-  } else if (!playerInfo.settled) {
-    const handleClick = () => {
-      settle(selectionInfo.x, selectionInfo.y, "Dirthelm")
-        .then(() => setPlayerInfo({...playerInfo, settled: true}));
-    };
-
-    result = (
-      <>
-        <p><button onClick={handleClick}>Settle here</button></p>
-        {result}
-      </>
-    )
-  }
-
-  return result;
 }
