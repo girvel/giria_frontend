@@ -16,7 +16,7 @@ export default function InfoBar(
     <div className="info_bar">
       <PlayerSection playerInfo={playerInfo} resources={resources} />
       <p>--------------------</p>
-      <SelectedSection selectionInfo={selectionInfo} playerInfo={playerInfo} setPlayerInfo={setPlayerInfo} />
+      <SelectedSection selectionInfo={selectionInfo} resources={resources} playerInfo={playerInfo} setPlayerInfo={setPlayerInfo} />
     </div>
   )
 }

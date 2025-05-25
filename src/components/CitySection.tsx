@@ -1,10 +1,11 @@
-import { settle } from "../model/api";
-import { City, PlayerInfo } from "../model/types";
+import { hireSoldier, settle } from "../model/api";
+import { City, PlayerInfo, Resources } from "../model/types";
+
 
 export default function CitySection(
-  { x, y, city, playerInfo, setPlayerInfo }: {
+  { x, y, city, resources, playerInfo, setPlayerInfo }: {
     x: number, y: number,
-    city: City | null, playerInfo: PlayerInfo, setPlayerInfo: any
+    city: City | null, resources: Resources, playerInfo: PlayerInfo, setPlayerInfo: any
   }
 ) {
   if (city === null) {
@@ -20,6 +21,10 @@ export default function CitySection(
     )
   }
 
+  const handleHireClick = () => {
+    hireSoldier(city.city_id);
+  };
+
   return (
     <>
       <p>{city.city_name.toUpperCase()}</p>
@@ -27,6 +32,9 @@ export default function CitySection(
         Population: {city.population}<br />
         Owner: <span style={{color: "#" + city.player_color}}>{city.player_login}</span><br />
       </p>
+      {resources.gold >= 10 && city.population >= 1
+      ? (<button onClick={handleHireClick}>Hire soldiers</button>)
+      : (<></>)}
     </>
   );
 }
